@@ -8,6 +8,9 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
     background:#0f0f0f;
+    background-image: linear-gradient(rgba(40,40,40,0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(40,40,40,0.15) 1px, transparent 1px);
+    background-size: 30px 30px;
     color:#eee;
     font-family:Microsoft Yahei;
     padding:30px 20px;
@@ -31,12 +34,14 @@ body{
 }
 .head p{
     color:#999;
+    font-size:16px;
+    letter-spacing: 1px;
 }
 
-/* 滚动小横幅 */
+/* 滚动横幅样式 */
 .scroll-banner {
     max-width: 900px;
-    margin: 0 auto 25px;
+    margin: 0 auto 35px;
     overflow: hidden;
     background: linear-gradient(90deg, #1e1e1e, #2d2d2d);
     border: 1px solid #444;
@@ -67,45 +72,128 @@ body{
     margin:0 auto;
 }
 .title{
-    font-size:18px;
-    margin:25px 0 15px;
-    padding-bottom:6px;
-    border-bottom:1px solid #222;
+    font-size:22px;
+    margin:25px 0 20px;
+    padding-bottom:8px;
+    border-bottom:1px solid #333;
 }
+/* 竖向单列卡片布局 */
 .link-group{
-    display:grid;
-    grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
-    gap:12px;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
 }
 .item{
+    display:flex;
+    align-items:center;
+    gap:20px;
     background:#1e1e1e;
-    padding:16px;
-    border-radius:10px;
+    padding:20px;
+    border-radius:12px;
     text-decoration:none;
     color:#fff;
     transition:0.2s;
-    text-align:center;
+    border:1px solid #333;
 }
 .item:hover{
     background:#2d2d2d;
     transform:translateY(-2px);
+    box-shadow: 0 0 12px rgba(255,214,0,0.15);
 }
+/* 左侧标准圆形图片 */
+.item-circle-img{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    object-fit:cover;
+    border:1px solid #555;
+}
+.item-text-wrap{
+    flex:1;
+    text-align:center;
+}
+/* 卡片内查看详情小字 */
+.detail-btn{
+    display:inline-block;
+    margin-top:16px;
+    padding:4px 14px;
+    border:1px solid #555;
+    border-radius:20px;
+    font-size:13px;
+    color:#bbb;
+}
+
+/* 底部加入我们主按钮 */
+.join-btn{
+    display:block;
+    max-width:600px;
+    margin:50px auto 40px;
+    padding:18px;
+    text-align:center;
+    background:linear-gradient(180deg,#383224,#272319);
+    border:1px solid #c8a658;
+    border-radius:99px;
+    font-size:24px;
+    color:#ffd680;
+    text-decoration:none;
+    letter-spacing:2px;
+    cursor: pointer;
+}
+
 .foot{
     text-align:center;
     margin-top:60px;
     color:#666;
     font-size:14px;
 }
+
+/* 弹窗样式 */
+.modal-mask{
+    position: fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index:999;
+}
+.modal-box{
+    width: 85%;
+    max-width: 420px;
+    background: #121212;
+    border:1px solid #c8a658;
+    border-radius:16px;
+    padding:50px 30px;
+    text-align:center;
+}
+.modal-text{
+    font-size:26px;
+    color:#ffd680;
+    letter-spacing:2px;
+    margin-bottom:30px;
+}
+.modal-close{
+    padding:10px 36px;
+    background:#2c281e;
+    border:1px solid #c8a658;
+    color:#ffd680;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+}
 </style>
 </head>
 <body>
 <div class="head">
-    <img class="circle-img" src="https://i.postimg.cc/fLZSdDGH/13DF6BD9-E0F3-450A-BF7C-467A65CA26E4.jpg" alt="logo">
+    <img class="circle-img" src="shturl.cc/HHrI0oUxcwufB3YrrZmQRLwiO0arg9puxmxpZII3ABlqzghV6A15oFon4yz2" alt="logo">
     <h1>爱过天下</h1>
-    <p>跟对人做对事</p>
+    <p>跨境资源 · 商业人脉 · 项目变现</p>
 </div>
 
-<!-- 滚动小横幅 -->
+<!-- 滚动横幅 -->
 <div class="scroll-banner">
     <div class="scroll-banner-text">
         🔥 8.3开业福利活动已开启｜纵横国际新用户专享｜汇赢国际限时加码｜龙腾国际同步上线中
@@ -115,14 +203,61 @@ body{
 <div class="box">
     <div class="title">主推</div>
     <div class="link-group">
-        <a href="https://ibb.co/hJX7QVTy" target="_blank" class="item">【8.3开业】纵横国际</a>
-        <a href="https://ibb.co/4ZP9FH1j" target="_blank" class="item">汇赢国际</a>
-        <a href="https://ibb.co/LdrdryB1" target="_blank" class="item">龙腾国际</a>
+        <!-- 纵横国际 左侧圆形图片 -->
+        <a href="https://ibb.co/hJX7QVTy" target="_blank" class="item">
+            <img class="item-circle-img" src="https://i.postimg.cc/XYKcrHhy/IMG-2011.jpg" alt="纵横国际">
+            <div class="item-text-wrap">
+                <div style="font-size:20px;margin-bottom:8px">纵横国际</div>
+                <span class="detail-btn">查看详情</span>
+            </div>
+        </a>
+        <!-- 汇赢国际 左侧圆形图片 -->
+        <a href="https://ibb.co/4ZP9FH1j" target="_blank" class="item">
+            <img class="item-circle-img" src="https://i.postimg.cc/htR1PWC8/IMG-2054.jpg" alt="汇赢国际">
+            <div class="item-text-wrap">
+                <div style="font-size:20px;margin-bottom:8px">汇赢国际</div>
+                <span class="detail-btn">查看详情</span>
+            </div>
+        </a>
+        <!-- 龙腾国际 左侧圆形图片 -->
+        <a href="https://ibb.co/LdrdryB1" target="_blank" class="item">
+            <img class="item-circle-img" src="https://i.postimg.cc/4xvbYLMt/IMG-2053.jpg" alt="龙腾国际">
+            <div class="item-text-wrap">
+                <div style="font-size:20px;margin-bottom:8px">龙腾国际</div>
+                <span class="detail-btn">查看详情</span>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- 底部按钮+弹窗 -->
+<div class="join-btn" id="openModal">加入我们</div>
+<div class="modal-mask" id="modalMask">
+    <div class="modal-box">
+        <div class="modal-text">旺商聊408381651</div>
+        <button class="modal-close" id="closeModal">关闭</button>
     </div>
 </div>
 
 <div class="foot">
 Copyright © 2026 爱过天下
 </div>
+
+<script>
+const openModal = document.getElementById('openModal');
+const modalMask = document.getElementById('modalMask');
+const closeModal = document.getElementById('closeModal');
+openModal.addEventListener('click',()=>{
+    modalMask.style.display = 'flex';
+})
+closeModal.addEventListener('click',()=>{
+    modalMask.style.display = 'none';
+})
+modalMask.addEventListener('click',(e)=>{
+    if(e.target === modalMask){
+        modalMask.style.display = 'none';
+    }
+})
+</script>
 </body>
 </html>
