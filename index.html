@@ -29,12 +29,13 @@ body{
     display: block;
 }
 .head h1{
-    font-size:26px;
-    margin-bottom:8px;
+    font-size:38px;
+    margin-bottom:12px;
+    font-weight:normal;
 }
 .head p{
     color:#999;
-    font-size:16px;
+    font-size:18px;
     letter-spacing: 1px;
 }
 
@@ -55,12 +56,11 @@ body{
 .scroll-banner-text {
     display: inline-block;
     animation: scrollLeft 12s linear infinite;
-    padding-left: 100%;
 }
 
 @keyframes scrollLeft {
     0% {
-        transform: translateX(0);
+        transform: translateX(100%);
     }
     100% {
         transform: translateX(-100%);
@@ -72,7 +72,7 @@ body{
     margin:0 auto;
 }
 .title{
-    font-size:22px;
+    font-size:32px;
     margin:25px 0 20px;
     padding-bottom:8px;
     border-bottom:1px solid #333;
@@ -112,14 +112,18 @@ body{
     flex:1;
     text-align:center;
 }
+.item-text-wrap div:first-child{
+    font-size:30px;
+    margin-bottom:8px;
+}
 /* 卡片内查看详情小字 */
 .detail-btn{
     display:inline-block;
     margin-top:16px;
-    padding:4px 14px;
+    padding:8px 24px;
     border:1px solid #555;
     border-radius:20px;
-    font-size:13px;
+    font-size:16px;
     color:#bbb;
 }
 
@@ -135,7 +139,6 @@ body{
     border-radius:99px;
     font-size:24px;
     color:#ffd680;
-    text-decoration:none;
     letter-spacing:2px;
     cursor: pointer;
 }
@@ -188,7 +191,8 @@ body{
 </head>
 <body>
 <div class="head">
-    <img class="circle-img" src="shturl.cc/HHrI0oUxcwufB3YrrZmQRLwiO0arg9puxmxpZII3ABlqzghV6A15oFon4yz2" alt="logo">
+    <!-- 顶部头像已替换为你指定链接 -->
+    <img class="circle-img" src="https://i.postimg.cc/fLZSdDGH/13DF6BD9-E0F3-450A-BF7C-467A65CA26E4.jpg" alt="logo">
     <h1>爱过天下</h1>
     <p>跨境资源 · 商业人脉 · 项目变现</p>
 </div>
@@ -207,7 +211,7 @@ body{
         <a href="https://ibb.co/hJX7QVTy" target="_blank" class="item">
             <img class="item-circle-img" src="https://i.postimg.cc/XYKcrHhy/IMG-2011.jpg" alt="纵横国际">
             <div class="item-text-wrap">
-                <div style="font-size:20px;margin-bottom:8px">纵横国际</div>
+                <div>纵横国际</div>
                 <span class="detail-btn">查看详情</span>
             </div>
         </a>
@@ -215,7 +219,7 @@ body{
         <a href="https://ibb.co/4ZP9FH1j" target="_blank" class="item">
             <img class="item-circle-img" src="https://i.postimg.cc/htR1PWC8/IMG-2054.jpg" alt="汇赢国际">
             <div class="item-text-wrap">
-                <div style="font-size:20px;margin-bottom:8px">汇赢国际</div>
+                <div>汇赢国际</div>
                 <span class="detail-btn">查看详情</span>
             </div>
         </a>
@@ -223,7 +227,7 @@ body{
         <a href="https://ibb.co/LdrdryB1" target="_blank" class="item">
             <img class="item-circle-img" src="https://i.postimg.cc/4xvbYLMt/IMG-2053.jpg" alt="龙腾国际">
             <div class="item-text-wrap">
-                <div style="font-size:20px;margin-bottom:8px">龙腾国际</div>
+                <div>龙腾国际</div>
                 <span class="detail-btn">查看详情</span>
             </div>
         </a>
