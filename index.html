@@ -16,7 +16,6 @@ body{
     text-align:center;
     padding:20px 0 40px;
 }
-/* 正圆图片样式 */
 .circle-img{
     width: 180px;
     height: 180px;
@@ -33,6 +32,36 @@ body{
 .head p{
     color:#999;
 }
+
+/* 滚动小横幅 */
+.scroll-banner {
+    max-width: 900px;
+    margin: 0 auto 25px;
+    overflow: hidden;
+    background: linear-gradient(90deg, #1e1e1e, #2d2d2d);
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: #ffd600;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.scroll-banner-text {
+    display: inline-block;
+    animation: scrollLeft 12s linear infinite;
+    padding-left: 100%;
+}
+
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
 .box{
     max-width:900px;
     margin:0 auto;
@@ -71,10 +100,16 @@ body{
 </head>
 <body>
 <div class="head">
-    <!-- 原生图片直链，直接加载 -->
     <img class="circle-img" src="https://i.postimg.cc/fLZSdDGH/13DF6BD9-E0F3-450A-BF7C-467A65CA26E4.jpg" alt="logo">
     <h1>爱过天下</h1>
     <p>跟对人做对事</p>
+</div>
+
+<!-- 滚动小横幅 -->
+<div class="scroll-banner">
+    <div class="scroll-banner-text">
+        🔥 8.3开业福利活动已开启｜纵横国际新用户专享｜汇赢国际限时加码｜龙腾国际同步上线中
+    </div>
 </div>
 
 <div class="box">
