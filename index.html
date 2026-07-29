@@ -243,9 +243,67 @@ body{
     font-size:16px;
     cursor:pointer;
 }
+
+/* ==========新增：进入网站自动弹窗+彩色文字动画========== */
+.welcome-mask{
+    position: fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-color:rgba(0,0,0,0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index:9999;
+}
+.welcome-box{
+    width:85%;
+    max-width:400px;
+    background:#111;
+    border:1px solid goldenrod;
+    border-radius:16px;
+    padding:40px 25px;
+    text-align:center;
+}
+/* 彩色渐变文字动画 */
+.color-text{
+    font-size:24px;
+    font-weight:bold;
+    background: linear-gradient(90deg,#ff4444,#ffcc00,#44dd44,#44aaff,#bb66ff,#ff4444);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: colorMove 4s linear infinite;
+    line-height:1.6;
+    margin-bottom:30px;
+}
+@keyframes colorMove{
+    0%{background-position:0% 50%}
+    100%{background-position:400% 50%}
+}
+.welcome-close{
+    padding:10px 32px;
+    border-radius:30px;
+    border:1px solid #ffc464;
+    background:#222;
+    color:#fff;
+    font-size:16px;
+    cursor:pointer;
+}
 </style>
 </head>
 <body>
+
+<!-- 页面加载自动弹出的欢迎弹窗 -->
+<div class="welcome-mask" id="welcomeMask">
+    <div class="welcome-box">
+        <div class="color-text">欢迎来到爱过天下！全平台充值1000加3000流水达标后联系返现588！</div>
+        <button class="welcome-close" id="welcomeClose">确定</button>
+    </div>
+</div>
+
 <div class="head">
     <img class="circle-img" src="https://i.postimg.cc/fLZSdDGH/13DF6BD9-E0F3-450A-BF7C-467A65CA26E4.jpg" alt="logo">
     <h1>爱过天下</h1>
@@ -311,6 +369,13 @@ Bygone Devotion · 2026 爱过天下
 </div>
 
 <script>
+//欢迎弹窗
+const welcomeMask = document.getElementById('welcomeMask');
+const welcomeClose = document.getElementById('welcomeClose');
+welcomeClose.onclick = function(){
+    welcomeMask.style.display = 'none';
+}
+
 //底部加入我们弹窗
 const openModal = document.getElementById('openModal');
 const modalMask = document.getElementById('modalMask');
