@@ -94,16 +94,34 @@ body{
     color:#fff;
     transition:0.2s;
     border:1px solid #333;
+    position:relative;
+    transform: scale(0.93);
+    transform-origin: center;
 }
 .item:hover{
     background:#2d2d2d;
-    transform:translateY(-2px);
+    transform:scale(0.93) translateY(-2px);
     box-shadow: 0 0 12px rgba(255,214,0,0.15);
 }
-/* 左侧标准圆形图片 */
+/* 右上角标签【修改：紧贴右上角】 */
+.card-tag{
+    position:absolute;
+    top:0px;
+    right:0px;
+    background:linear-gradient(135deg,#d6a448,#ffc464);
+    color:#000;
+    font-size:13px;
+    font-weight:bold;
+    padding:4px 12px;
+    border-bottom-left-radius:12px;
+    border-top-right-radius:12px;
+    cursor:pointer;
+    z-index: 2;
+}
+/* 左侧圆形图片【缩小】 */
 .item-circle-img{
-    width:110px;
-    height:110px;
+    width:90px;
+    height:90px;
     border-radius:50%;
     object-fit:cover;
     border:1px solid #555;
@@ -112,18 +130,19 @@ body{
     flex:1;
     text-align:center;
 }
+/* 卡片标题字体缩小 */
 .item-text-wrap div:first-child{
-    font-size:30px;
+    font-size:24px;
     margin-bottom:8px;
 }
-/* 卡片内查看详情小字 */
+/* 查看详情字体缩小 */
 .detail-btn{
     display:inline-block;
     margin-top:16px;
     padding:8px 24px;
     border:1px solid #555;
     border-radius:20px;
-    font-size:16px;
+    font-size:14px;
     color:#bbb;
 }
 
@@ -150,7 +169,7 @@ body{
     font-size:14px;
 }
 
-/* 弹窗样式 */
+/* 原有弹窗样式 */
 .modal-mask{
     position: fixed;
     left:0;
@@ -187,17 +206,52 @@ body{
     font-size:16px;
     cursor:pointer;
 }
+
+/* 热门标签弹窗 */
+.tag-modal-mask{
+    position: fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index:1000;
+}
+.tag-modal-box{
+    width: 85%;
+    max-width: 360px;
+    background: #121212;
+    border:1px solid #c8a658;
+    border-radius:16px;
+    padding:40px 30px;
+    text-align:center;
+}
+.tag-modal-text{
+    font-size:28px;
+    color:#ffd680;
+    margin-bottom:30px;
+}
+.tag-modal-close{
+    padding:10px 36px;
+    background:#2c281e;
+    border:1px solid #c8a658;
+    color:#ffd680;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+}
 </style>
 </head>
 <body>
 <div class="head">
-    <!-- 顶部头像已替换为你指定链接 -->
     <img class="circle-img" src="https://i.postimg.cc/fLZSdDGH/13DF6BD9-E0F3-450A-BF7C-467A65CA26E4.jpg" alt="logo">
     <h1>爱过天下</h1>
     <p>纵横四海 · 汇赢天下 · 龙腾国际</p>
 </div>
 
-<!-- 滚动横幅 -->
 <div class="scroll-banner">
     <div class="scroll-banner-text">
         🔥 8.3开业福利活动已开启｜纵横国际新用户专享｜汇赢国际限时加码｜龙腾国际同步上线中 🔥
@@ -207,15 +261,16 @@ body{
 <div class="box">
     <div class="title">主推</div>
     <div class="link-group">
-        <!-- 纵横国际 左侧圆形图片 -->
+        <!-- 纵横国际卡片 -->
         <a href="http://xnqwzf.tckqxx.com/app/register.php?site_id=1067&topId=5621785169552551&selfPlanId=26284" target="_blank" class="item">
+            <div class="card-tag" id="hotTag">热门推荐</div>
             <img class="item-circle-img" src="https://i.postimg.cc/XYKcrHhy/IMG-2011.jpg" alt="纵横国际">
             <div class="item-text-wrap">
                 <div>🔥纵横国际🔥</div>
                 <span class="detail-btn">查看详情</span>
             </div>
         </a>
-        <!-- 汇赢国际 左侧圆形图片 -->
+        <!-- 汇赢国际 -->
         <a href="https://eqglsg.hcjwj.com/app/register.php?site_id=1062&topId=1316488&selfPlanId=1806454" target="_blank" class="item">
             <img class="item-circle-img" src="https://i.postimg.cc/htR1PWC8/IMG-2054.jpg" alt="汇赢国际">
             <div class="item-text-wrap">
@@ -223,7 +278,7 @@ body{
                 <span class="detail-btn">查看详情</span>
             </div>
         </a>
-        <!-- 龙腾国际 左侧圆形图片 -->
+        <!-- 龙腾国际 -->
         <a href="https://eqglsg.hcjwj.com/app/register.php?site_id=1062&topId=1316488&selfPlanId=1806454" target="_blank" class="item">
             <img class="item-circle-img" src="https://i.postimg.cc/4xvbYLMt/IMG-2053.jpg" alt="龙腾国际">
             <div class="item-text-wrap">
@@ -234,7 +289,7 @@ body{
     </div>
 </div>
 
-<!-- 底部按钮+弹窗 -->
+<!-- 底部【加入我们】弹窗 -->
 <div class="join-btn" id="openModal">加入我们</div>
 <div class="modal-mask" id="modalMask">
     <div class="modal-box">
@@ -243,11 +298,20 @@ body{
     </div>
 </div>
 
+<!-- 热门标签弹窗 -->
+<div class="tag-modal-mask" id="tagModalMask">
+    <div class="tag-modal-box">
+        <div class="tag-modal-text">纵横国际将于7.30日-8.2日发放每日红包！注册绑定后即可领取！领取方式首页-右侧红包活动</div>
+        <button class="tag-modal-close" id="tagModalClose">关闭</button>
+    </div>
+</div>
+
 <div class="foot">
 Bygone Devotion · 2026 爱过天下
 </div>
 
 <script>
+//底部加入我们弹窗
 const openModal = document.getElementById('openModal');
 const modalMask = document.getElementById('modalMask');
 const closeModal = document.getElementById('closeModal');
@@ -262,14 +326,31 @@ modalMask.addEventListener('click',(e)=>{
         modalMask.style.display = 'none';
     }
 })
+
+//点击热门推荐弹窗
+const hotTag = document.getElementById("hotTag");
+const tagModalMask = document.getElementById("tagModalMask");
+const tagModalClose = document.getElementById("tagModalClose");
+
+hotTag.onclick = function(e){
+    //阻止触发卡片跳转链接
+    e.preventDefault();
+    e.stopPropagation();
+    tagModalMask.style.display = "flex";
+}
+tagModalClose.onclick = function(){
+    tagModalMask.style.display = "none";
+}
+tagModalMask.onclick = function(e){
+    if(e.target === tagModalMask){
+        tagModalMask.style.display = "none";
+    }
+}
 </script>
 
-<!-- ========= 底部滚动横幅 正确位置 ========= -->
 <div class="banner-box">
   <div class="banner-animate">网站重要公告：本站长期维护更新，访问异常请刷新页面</div>
 </div>
-<!-- ====================================== -->
 
-</script>
 </body>
 </html>
