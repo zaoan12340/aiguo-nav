@@ -2,30 +2,80 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>爱过天下</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+*{margin:0;padding:0;box-sizing:border-box;transition: background-color 0.35s, color 0.35s, border-color 0.35s;}
+
+/* 默认浅色主题（打开就是白色） */
+:root{
+    --bg:#ffffff;
+    --bg-card:#f5f5f5;
+    --bg-card-hover:#e9e9e9;
+    --text:#111111;
+    --text-sub:#666;
+    --border:#dddddd;
+    --grid-line:rgba(180,180,180,0.2);
+    --gold:#b48c00;
+    --gold-light:#9c7822;
+}
+/* 深色主题 */
+body.dark-mode{
+    --bg:#0f0f0f;
+    --bg-card:#1e1e1e;
+    --bg-card-hover:#2d2d2d;
+    --text:#eee;
+    --text-sub:#999;
+    --border:#333;
+    --grid-line:rgba(40,40,40,0.15);
+    --gold:#ffd600;
+    --gold-light:#ffd680;
+}
+
 body{
-    background:#0f0f0f;
-    background-image: linear-gradient(rgba(40,40,40,0.15) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(40,40,40,0.15) 1px, transparent 1px);
+    background:var(--bg);
+    background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
     background-size: 30px 30px;
-    color:#eee;
+    color:var(--text);
     font-family:Microsoft Yahei;
     padding:30px 20px;
 }
+
+/* 主题切换按钮 右上角 */
+.theme-toggle-wrap{
+    position:fixed;
+    top:16px;
+    right:16px;
+    z-index:9999;
+}
+#themeBtn{
+    padding:8px 14px;
+    border-radius:30px;
+    border:1px solid var(--border);
+    background:var(--bg-card);
+    color:var(--text);
+    font-size:14px;
+    cursor:pointer;
+}
+
 .head{
     text-align:center;
     padding:20px 0 40px;
 }
-.circle-img{
-    width: 180px;
+.logo-card{
+    width: 320px;
     height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
     margin: 0 auto 16px;
-    border: 2px solid #444;
+    border: 2px solid var(--border);
+    border-radius: 24px;
+    overflow: hidden;
+    display: block;
+}
+.logo-card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
 }
 .head h1{
@@ -34,7 +84,7 @@ body{
     font-weight:normal;
 }
 .head p{
-    color:#999;
+    color:var(--text-sub);
     font-size:18px;
     letter-spacing: 1px;
 }
@@ -44,11 +94,11 @@ body{
     max-width: 900px;
     margin: 0 auto 35px;
     overflow: hidden;
-    background: linear-gradient(90deg, #1e1e1e, #2d2d2d);
-    border: 1px solid #444;
+    background:var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 8px;
     padding: 10px 12px;
-    color: #ffd600;
+    color: var(--gold);
     font-size: 15px;
     white-space: nowrap;
 }
@@ -75,7 +125,7 @@ body{
     font-size:32px;
     margin:25px 0 20px;
     padding-bottom:8px;
-    border-bottom:1px solid #333;
+    border-bottom:1px solid var(--border);
 }
 /* 竖向单列卡片布局 */
 .link-group{
@@ -87,23 +137,23 @@ body{
     display:flex;
     align-items:center;
     gap:20px;
-    background:#1e1e1e;
+    background:var(--bg-card);
     padding:20px;
     border-radius:12px;
     text-decoration:none;
-    color:#fff;
+    color:var(--text);
     transition:0.2s;
-    border:1px solid #333;
+    border:1px solid var(--border);
     position:relative;
     transform: scale(0.93);
     transform-origin: center;
 }
 .item:hover{
-    background:#2d2d2d;
+    background:var(--bg-card-hover);
     transform:scale(0.93) translateY(-2px);
     box-shadow: 0 0 12px rgba(255,214,0,0.15);
 }
-/* 右上角标签【修改：紧贴右上角】 */
+/* 右上角标签 */
 .card-tag{
     position:absolute;
     top:0px;
@@ -118,35 +168,32 @@ body{
     cursor:pointer;
     z-index: 2;
 }
-/* 左侧圆形图片【缩小】 */
+/* 左侧圆形图片 */
 .item-circle-img{
     width:90px;
     height:90px;
     border-radius:50%;
     object-fit:cover;
-    border:1px solid #555;
+    border:1px solid var(--border);
 }
 .item-text-wrap{
     flex:1;
     text-align:center;
 }
-/* 卡片标题字体缩小 */
 .item-text-wrap div:first-child{
     font-size:24px;
     margin-bottom:8px;
 }
-/* 查看详情字体缩小 */
 .detail-btn{
     display:inline-block;
     margin-top:16px;
     padding:8px 24px;
-    border:1px solid #555;
+    border:1px solid var(--border);
     border-radius:20px;
     font-size:14px;
-    color:#bbb;
+    color:var(--text-sub);
 }
 
-/* 底部加入我们主按钮 */
 .join-btn{
     display:block;
     max-width:600px;
@@ -165,11 +212,10 @@ body{
 .foot{
     text-align:center;
     margin-top:60px;
-    color:#666;
+    color:var(--text-sub);
     font-size:14px;
 }
 
-/* 原有弹窗样式 */
 .modal-mask{
     position: fixed;
     left:0;
@@ -185,7 +231,7 @@ body{
 .modal-box{
     width: 85%;
     max-width: 420px;
-    background: #121212;
+    background: var(--bg-card);
     border:1px solid #c8a658;
     border-radius:16px;
     padding:50px 30px;
@@ -199,7 +245,7 @@ body{
 }
 .modal-close{
     padding:10px 36px;
-    background:#2c281e;
+    background:var(--bg);
     border:1px solid #c8a658;
     color:#ffd680;
     border-radius:30px;
@@ -207,7 +253,6 @@ body{
     cursor:pointer;
 }
 
-/* 热门标签弹窗 */
 .tag-modal-mask{
     position: fixed;
     left:0;
@@ -223,7 +268,7 @@ body{
 .tag-modal-box{
     width: 85%;
     max-width: 360px;
-    background: #121212;
+    background: var(--bg-card);
     border:1px solid #c8a658;
     border-radius:16px;
     padding:40px 30px;
@@ -236,7 +281,7 @@ body{
 }
 .tag-modal-close{
     padding:10px 36px;
-    background:#2c281e;
+    background:var(--bg);
     border:1px solid #c8a658;
     color:#ffd680;
     border-radius:30px;
@@ -244,7 +289,6 @@ body{
     cursor:pointer;
 }
 
-/* ==========新增：进入网站自动弹窗+彩色文字动画========== */
 .welcome-mask{
     position: fixed;
     left:0;
@@ -260,13 +304,12 @@ body{
 .welcome-box{
     width:85%;
     max-width:400px;
-    background:#111;
+    background:var(--bg-card);
     border:1px solid goldenrod;
     border-radius:16px;
     padding:40px 25px;
     text-align:center;
 }
-/* 彩色渐变文字动画 */
 .color-text{
     font-size:24px;
     font-weight:bold;
@@ -287,16 +330,20 @@ body{
     padding:10px 32px;
     border-radius:30px;
     border:1px solid #ffc464;
-    background:#222;
-    color:#fff;
+    background:var(--bg);
+    color:var(--text);
     font-size:16px;
     cursor:pointer;
 }
+.banner-box{margin-top:30px;text-align:center;color:var(--text-sub);}
 </style>
 </head>
 <body>
+<!-- 右上角切换按钮，初始显示切换深色模式 -->
+<div class="theme-toggle-wrap">
+    <button id="themeBtn">切换深色模式</button>
+</div>
 
-<!-- 页面加载自动弹出的欢迎弹窗 -->
 <div class="welcome-mask" id="welcomeMask">
     <div class="welcome-box">
         <div class="color-text">欢迎来到爱过天下！<br>纵横国际已盛大开业！<br>充值1000+3000流水后返现588</div>
@@ -305,7 +352,9 @@ body{
 </div>
 
 <div class="head">
-    <img class="circle-img" src="https://i.postimg.cc/fLZSdDGH/13DF6BD9-E0F3-450A-BF7C-467A65CA26E4.jpg" alt="logo">
+    <div class="logo-card">
+        <img src="https://i.postimg.cc/nVvnjhrq/IMG-2244.jpg" alt="logo">
+    </div>
     <h1>爱过天下</h1>
     <p>纵横四海 · 汇赢天下 · 龙腾国际</p>
 </div>
@@ -319,7 +368,6 @@ body{
 <div class="box">
     <div class="title">主推</div>
     <div class="link-group">
-        <!-- 纵横国际卡片 -->
         <a href="http://xnqwzf.tckqxx.com/app/register.php?site_id=1067&topId=5621785169552551&selfPlanId=26284" target="_blank" class="item">
             <div class="card-tag" id="hotTag">最新上线</div>
             <img class="item-circle-img" src="https://i.postimg.cc/XYKcrHhy/IMG-2011.jpg" alt="纵横国际">
@@ -328,7 +376,6 @@ body{
                 <span class="detail-btn">查看详情</span>
             </div>
         </a>
-        <!-- 汇赢国际 -->
         <a href="https://eqglsg.hcjwj.com/app/register.php?site_id=1062&topId=1316488&selfPlanId=1806454" target="_blank" class="item">
             <img class="item-circle-img" src="https://i.postimg.cc/htR1PWC8/IMG-2054.jpg" alt="汇赢国际">
             <div class="item-text-wrap">
@@ -336,8 +383,7 @@ body{
                 <span class="detail-btn">查看详情</span>
             </div>
         </a>
-        <!-- 龙腾国际 -->
-        <a href="https://psktkx.tckqxx.com/app/register.php?site_id=1065&topId=1711782221241165&selfPlanId=1113464" target="_blank" class="item">
+        <a href="shturl.cc/mmYQReffzE0RlyNaakDAEmOX5LPWbQDZAjhouMPgPuKbuaHTEriXDdLOD14A4Q8dhROkt82ie67oM5xYHMJz7aS" target="_blank" class="item">
             <img class="item-circle-img" src="https://i.postimg.cc/4xvbYLMt/IMG-2053.jpg" alt="龙腾国际">
             <div class="item-text-wrap">
                 <div>龙腾国际</div>
@@ -347,7 +393,6 @@ body{
     </div>
 </div>
 
-<!-- 底部【加入我们】弹窗 -->
 <div class="join-btn" id="openModal">加入我们</div>
 <div class="modal-mask" id="modalMask">
     <div class="modal-box">
@@ -356,7 +401,6 @@ body{
     </div>
 </div>
 
-<!-- 热门标签弹窗 -->
 <div class="tag-modal-mask" id="tagModalMask">
     <div class="tag-modal-box">
         <div class="tag-modal-text">纵横国际将于7.30日-8.2日发放每日红包！注册绑定后即可领取！领取方式首页-右侧红包活动</div>
@@ -369,14 +413,27 @@ Bygone Devotion · 2026 爱过天下
 </div>
 
 <script>
-//欢迎弹窗
+//主题切换，默认白色，点击切深色
+const body = document.body;
+const themeBtn = document.getElementById('themeBtn');
+let isDark = false;
+themeBtn.onclick = ()=>{
+    isDark = !isDark;
+    if(isDark){
+        body.classList.add('dark-mode');
+        themeBtn.innerText = "切换浅色模式";
+    }else{
+        body.classList.remove('dark-mode');
+        themeBtn.innerText = "切换深色模式";
+    }
+};
+
 const welcomeMask = document.getElementById('welcomeMask');
 const welcomeClose = document.getElementById('welcomeClose');
 welcomeClose.onclick = function(){
     welcomeMask.style.display = 'none';
 }
 
-//底部加入我们弹窗
 const openModal = document.getElementById('openModal');
 const modalMask = document.getElementById('modalMask');
 const closeModal = document.getElementById('closeModal');
@@ -392,13 +449,11 @@ modalMask.addEventListener('click',(e)=>{
     }
 })
 
-//点击热门推荐弹窗
 const hotTag = document.getElementById("hotTag");
 const tagModalMask = document.getElementById("tagModalMask");
 const tagModalClose = document.getElementById("tagModalClose");
 
 hotTag.onclick = function(e){
-    //阻止触发卡片跳转链接
     e.preventDefault();
     e.stopPropagation();
     tagModalMask.style.display = "flex";
@@ -414,7 +469,7 @@ tagModalMask.onclick = function(e){
 </script>
 
 <div class="banner-box">
-  <div class="banner-animate">网站重要公告：本站长期维护更新，访问异常请刷新页面</div>
+  <div class="banner-animate">重要公告：本站长期维护更新，务必牢记永久🔗：爱过.cc</div>
 </div>
 
 </body>
