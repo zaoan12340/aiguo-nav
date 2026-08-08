@@ -127,18 +127,23 @@ body{
     padding-bottom:8px;
     border-bottom:1px solid var(--border);
 }
-/* 竖向单列卡片布局 */
+/* ========== 修改后：横向并排 + 竖长方形卡片 ========== */
 .link-group{
     display:flex;
-    flex-direction:column;
-    gap:16px;
+    flex-direction:row;
+    gap:12px;
+    width:100%;
 }
 .item{
+    flex:1;
+    min-height:280px; /* 竖长方形高度 */
     display:flex;
+    flex-direction:column; /* 内部上下排列，匹配手绘竖框 */
     align-items:center;
-    gap:20px;
+    justify-content:center;
+    gap:14px;
     background:var(--bg-card);
-    padding:20px;
+    padding:24px 12px;
     border-radius:12px;
     text-decoration:none;
     color:var(--text);
@@ -168,7 +173,7 @@ body{
     cursor:pointer;
     z-index: 2;
 }
-/* 左侧圆形图片 */
+/* 圆形图片改为上方居中 */
 .item-circle-img{
     width:90px;
     height:90px;
@@ -177,7 +182,6 @@ body{
     border:1px solid var(--border);
 }
 .item-text-wrap{
-    flex:1;
     text-align:center;
 }
 .item-text-wrap div:first-child{
@@ -192,6 +196,30 @@ body{
     border-radius:20px;
     font-size:14px;
     color:var(--text-sub);
+}
+
+/* 手机端适配：依旧3张横向并排竖长卡片 */
+@media (max-width:640px){
+    .link-group{
+        flex-direction:row;
+        gap:8px;
+    }
+    .item{
+        min-height:220px;
+        padding:16px 8px;
+        gap:10px;
+    }
+    .item-circle-img{
+        width:64px;
+        height:64px;
+    }
+    .item-text-wrap div:first-child{
+        font-size:18px;
+    }
+    .detail-btn{
+        padding:5px 14px;
+        font-size:12px;
+    }
 }
 
 .join-btn{
